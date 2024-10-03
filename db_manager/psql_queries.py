@@ -2,7 +2,7 @@ class PSQL_QUERIES:
 
     INSERT_GAME_ENTRY = '''
         INSERT INTO pool_games
-        (match_id, game_type, player, is_win, date)
+        (match_id, game_id, game_type, player, is_win, date)
         VALUES
         (%s, %s, %s, %s, %s)
     '''
