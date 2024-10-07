@@ -13,3 +13,27 @@ class PSQL_QUERIES:
         VALUES
         (%s, %s, %s, %s, %s)
     '''
+
+    SELECT_DISTINCT_POOL_PLAYERS = '''
+        SELECT DISTINCT player
+        FROM pool_games
+        ORDER by (player);
+    '''
+
+    DELETE_POOL_PLAYER_STATS = '''
+        DELETE
+        FROM pool_player_stats
+    '''
+
+    SELECT_GAMES_BY_PLAYER = '''
+        SELECT is_win
+        FROM pool_games
+        WHERE player = %s;
+    '''
+
+    INSERT_PLAYER_STATS = '''
+        INSERT INTO pool_player_stats
+        (player, total_games, total_wins, win_percentage)
+        VALUES
+        (%s, %s, %s, %s);
+    '''
