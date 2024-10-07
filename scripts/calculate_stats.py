@@ -21,10 +21,6 @@ def calculate_stats():
         data = (player, total_games, total_wins, win_percentage)
         db.save_player_stats(data)
 
-        print(player + ' total_games: ' + str(total_games) 
-              + " , total_wins: " + str(total_wins) 
-              + " , win% : " + str(win_percentage))
-
 
 if __name__ == '__main__':
     print("STARTING calculate_stats()")
