@@ -27,16 +27,15 @@ def execute(psql_raw, fetch: Fetch, params=None):
         raise
 
 def insert_match_entry(data):
-    return
     execute(psql.INSERT_MATCH, Fetch.EXC, data)
 
 def insert_game_entry(data):
     execute(psql.INSERT_GAME_ENTRY, Fetch.EXC, data)
 
 
-def get_user_pwd(data):
+def todo(data):
     row = execute(psql.TODO, Fetch.ONE, data)
     return row
 
-def get_random_quote():
+def todo1():
     rows = execute(psql.TODO, Fetch.ALL)

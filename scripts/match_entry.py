@@ -3,47 +3,46 @@ from datetime import datetime
 
 def get_match_input():
     print("___MATCH ENTRY___")
-    print("Enter week number: ")
+
     week_num = ''
     while week_num == '':
-        week_num_input = input().strip()
+        week_num_input = input("Enter week number: ").strip()
         if week_num_input.isdigit():
             week_num = int(week_num_input)
         else:
             print("--->>>Invalid entry. Re-Enter week number.<<<")
 
-    print("Enter opponent team's name: ")
     opponent = ''
     while opponent == '':
-        opponent_input = input().strip()
+        opponent_input = input("Enter opponent team's name: ").strip()
         if opponent_input is None or opponent_input=='':
             print("--->>>Re-Enter opponent's team name.<<<")
         else:
             opponent = opponent_input
 
-    print("Enter 1 for WIN, 0 for LOSS: ")
     is_win = ''
     while is_win == '':
-        win_input = input()
-        if win_input.isdigit() and (win_input=='0' or win_input=='1'):
-            is_win = bool(win_input)
+        win_input = input("Enter [W]in or [L]oss : ").lower()
+        if win_input=='w' or win_input=='l':
+            if win_input == 'w':
+                is_win = bool(True)
+            else:
+                is_win = bool(False)
         else:
-            print("--->>>Invalid win input. Enter 0 or 1.<<<")
+            print("--->>>Invalid win input. Enter W or L.<<<")
 
-    print("Enter match score in <int>:<int> format: ")
     match_score = ''
     while match_score == '':
-        match_input = str(input())
+        match_input = input("Enter match score in <int>:<int> format: ")
         scores = match_input.split(':')
         if len(scores)==2 and scores[0].isdigit() and scores[1].isdigit():
             match_score = match_input
         else:
             print("--->>>Invalid score input. Try again.<<<")
 
-    print("Enter match date in mm/dd/yy format: ")
     match_date = ''
     while match_date == '':
-        date_input = str(input())
+        date_input = input("Enter match date in mm/dd/yy format: ")
         try:
             match_date = datetime.strptime(date_input, '%m/%d/%y')
         except:
@@ -53,33 +52,35 @@ def get_match_input():
 
 
 def get_game_results():
-    print("___ROUND 1___")
+    print("\n___ROUND 1___")
     round1 = []
     while round1 == []:
-        round1.append(get_double_game_entry(1))
+        double_game_entry(1, round1)
         for game in range(2,6):
-            round1.append(get_single_game_entry(game))
+            single_game_entry(game, round1)
+
         print("\n___Verify Round 1___")
-        print(round1)
-        print("Enter yes or no")
-        is_correct = input()
-        if is_correct == 'yes':
+        for game in round1:
+            print(game)
+        is_correct = input("Valid? yes or no: ")
+        if is_correct.lower() == 'yes':
             pass
         else:
             round1 = []
 
-    print("___ROUND 2___")
+    print("\n___ROUND 2___")
     round2 = []
     while round2 == []:
-        round2.append(get_double_game_entry(6))
+        double_game_entry(6, round2)
         for game in range(7,11):
-            round2.append(get_single_game_entry(game))
-        round2.append(get_double_game_entry(11))
+            single_game_entry(game, round2)
+        double_game_entry(11, round2)
+
         print("\n___Verify Round 2___")
-        print(round1)
-        print("Enter yes or no")
-        is_correct = input()
-        if is_correct == 'yes':
+        for game in round2:
+            print(game)
+        is_correct = input("Valid? yes or no: ")
+        if is_correct.lower() == 'yes':
             pass
         else:
             round2 = []
@@ -87,47 +88,48 @@ def get_game_results():
     return round1 + round2
 
 
-def get_double_game_entry(game_id):
-    game = []
-    print(f"Enter Game {game_id} Doubles result in format: player1 player2 [w/l]")
-    while game == []:
-        game_input = input()
+def double_game_entry(game_id, round):
+    input_parts = ""
+    while input_parts == "":
+        game_input = input(f"Enter Game {game_id} Doubles result: ")
         input_parts = game_input.split(" ")
         if len(input_parts)==3 and (input_parts[2].lower()=='w' or input_parts[2].lower()=='l'):
-            player1 = input_parts[0]
-            player2 = input_parts[1]
-            is_win = input_parts[2].lower()
+            player1 = input_parts[0].title()
+            player2 = input_parts[1].title()
+            is_win_input = input_parts[2].lower()
+            if is_win_input == 'w':
+                is_win = bool(True)
+            else:
+                is_win = bool(False)
 
             double1 = (game_id, "double", player1, is_win)
             double2 = (game_id, "double", player2, is_win)
-            game.append(double1)
-            game.append(double2)
+            round.append(double1)
+            round.append(double2)
         else:
-            print("--->>>Re-Enter Doubles result.<<<")
-
-    return game
+            print("--->>>Re-Enter Doubles result in format: player1 player2 [W/L]<<<")
+            input_parts = ""
             
 
-def get_single_game_entry(game_id):
-    game = []
-    print(f"Enter Game {game_id} Singles result in format: player1 player2 [w/l]")
-    while game == []:
-        game_input = input()
+def single_game_entry(game_id, round):
+    input_parts = ""
+    while input_parts == "":
+        game_input = input(f"Enter Game {game_id} Singles result: ")
         input_parts = game_input.split(" ")
         if len(input_parts)==2 and (input_parts[1].lower()=='w' or input_parts[1].lower()=='l'):
-            player = input_parts[0]
-            is_win = input_parts[1].lower()
-
-            double1 = (game_id, "single", player, is_win)
-            game.append(double1)
+            player = input_parts[0].title()
+            is_win_input = input_parts[1].lower()
+            if is_win_input == 'w':
+                is_win = bool(True)
+            else:
+                is_win = bool(False)
+            
+            game = (game_id, "single", player, is_win)
+            round.append(game)
         else:
-            print("--->>>Re-Enter Singles result.<<<")
+            print("--->>>Re-Enter Singles result in format: player1 [W/L] <<<")
+            input_parts = ""
 
-    return game
-
-
-def add_game_entry(data):
-    print(data)
 
 def enter_score_sheet():
     match_input = get_match_input()
@@ -138,8 +140,8 @@ def enter_score_sheet():
     game_results = get_game_results()
     for game in game_results:
         data = (match_id,) + game + (match_date,)
-        add_game_entry(data)
-
+        db.insert_game_entry(data)
+    print("\nGame entries saved!")
 
 
 if __name__ == '__main__':
