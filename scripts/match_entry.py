@@ -1,5 +1,6 @@
 import db_manager.db as db
 from datetime import datetime
+import calculate_stats
 
 def get_match_input():
     print("___MATCH ENTRY___")
@@ -147,5 +148,5 @@ def enter_score_sheet():
 if __name__ == '__main__':
     print("STARTING match_entry")
     enter_score_sheet()
-    #calculate_stats!
     print("FINISHED match_entry")
+    calculate_stats()
