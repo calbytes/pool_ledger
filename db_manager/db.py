@@ -48,9 +48,6 @@ def get_games_by_player(data):
 def save_player_stats(data):
     execute(psql.INSERT_PLAYER_STATS, Fetch.EXC, data)
 
-
-
-def todo(data):
-    row = execute(psql.TODO, Fetch.ONE, data)
-    return row
+def insert_scoresheet(data):
+    execute(psql.INSERT_SCORESHEET, Fetch.EXC, data)
 

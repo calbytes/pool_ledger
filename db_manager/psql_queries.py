@@ -37,3 +37,10 @@ class PSQL_QUERIES:
         VALUES
         (%s, %s, %s, %s);
     '''
+
+    INSERT_SCORESHEET = '''
+        INSERT into pool_files
+        (file_id, file_name, file_data)
+        VALUES
+        (%s, %s, %s)
+    '''
