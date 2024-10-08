@@ -48,8 +48,8 @@ def get_games_by_player(data):
 def save_player_stats(data):
     execute(psql.INSERT_PLAYER_STATS, Fetch.EXC, data)
 
-def insert_scoresheet(data):
-    execute(psql.INSERT_SCORESHEET, Fetch.EXC, data)
+def insert_file(data):
+    execute(psql.INSERT_FILE, Fetch.EXC, data)
 
 def select_file(data):
     file_data = execute(psql.SELECT_FILE, Fetch.ONE, data)
