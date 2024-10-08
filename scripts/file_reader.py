@@ -1,13 +1,14 @@
+import db_manager.db as db
 
 def read_file():
-    cur.execute("SELECT image_data FROM images WHERE id = %s", (1,))
-image_data = cur.fetchone()[0]
+    file_name = input("Enter file name : " )
+    data = (file_name,)
+    print("reading from db...")
+    image_data = db.select_file(data)
 
-# Write the binary data to a new file
-with open('retrieved_image.jpg', 'wb') as f:
-    f.write(image_data)
-    pass
-
+    with open("scoresheets/db_" + file_name, 'wb') as f:
+        print("writing data to file...")
+        f.write(image_data)
 
 
 if __name__ == '__main__':

@@ -51,3 +51,7 @@ def save_player_stats(data):
 def insert_scoresheet(data):
     execute(psql.INSERT_SCORESHEET, Fetch.EXC, data)
 
+def select_file(data):
+    file_data = execute(psql.SELECT_FILE, Fetch.ONE, data)
+    return file_data[0]
+

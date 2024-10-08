@@ -44,3 +44,9 @@ class PSQL_QUERIES:
         VALUES
         (%s, %s, %s)
     '''
+
+    SELECT_FILE = '''
+        SELECT file_data 
+        FROM pool_files
+        WHERE file_name = %s;
+    '''
