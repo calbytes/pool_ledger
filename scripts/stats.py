@@ -1,6 +1,8 @@
 import db_manager.db as db
 
 def calculate_stats():
+    print("___Starting calculate_stats()___")
+    print("Resetting previous stats...")
     db.reset_player_stats()
 
     players = db.get_pool_players()
@@ -20,6 +22,8 @@ def calculate_stats():
 
         data = (player, total_games, total_wins, win_percentage)
         db.save_player_stats(data)
+    
+    print("___FINISHED calculate_stats()___")
 
 
 if __name__ == '__main__':

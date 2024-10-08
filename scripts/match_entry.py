@@ -1,6 +1,6 @@
 import db_manager.db as db
 from datetime import datetime
-import calculate_stats
+from scripts.stats import calculate_stats
 
 def get_match_input():
     print("___MATCH ENTRY___")
