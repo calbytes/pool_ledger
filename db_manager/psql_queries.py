@@ -50,3 +50,11 @@ class PSQL_QUERIES:
         FROM pool_files
         WHERE file_name = %s;
     '''
+
+    GET_ALL_MATCH_IDS = '''
+        
+    '''
+
+    SELECT_DOUBLES_BY_MATCH_ID = '''
+
+    '''
