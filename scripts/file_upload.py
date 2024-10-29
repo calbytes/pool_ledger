@@ -25,6 +25,6 @@ def upload_file():
 
 if __name__ == '__main__':
     print("\n   --->>> Starting file_upload() <<<---")
-    #upload_sheet()
+    upload_sheet()
     #upload_file()
     print("\n--->>> FINISHED")
