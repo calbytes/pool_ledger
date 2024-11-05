@@ -55,3 +55,12 @@ def select_file(data):
     file_data = execute(psql.SELECT_FILE, Fetch.ONE, data)
     return file_data[0]
 
+def get_all_match_ids():
+    rows = execute(psql.GET_ALL_MATCH_IDS, Fetch.ALL)
+    ids = [row[0] for row in rows]
+    return ids
+
+def get_double_players(data):
+    rows = execute(psql.SELECT_DOUBLES_BY_MATCH_ID, Fetch.ALL, data)
+    pairs = [row[0] for row in rows]
+    return pairs

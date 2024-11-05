@@ -52,9 +52,15 @@ class PSQL_QUERIES:
     '''
 
     GET_ALL_MATCH_IDS = '''
-        
+        SELECT match_id
+        FROM pool_match
+        ORDER BY match_id
     '''
 
     SELECT_DOUBLES_BY_MATCH_ID = '''
-
+        SELECT player
+        FROM pool_games
+        WHERE match_id = %s
+        AND game_id = %s
+        AND game_type = 'double';
     '''
