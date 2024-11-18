@@ -30,7 +30,7 @@ def build_doubles_map():
 
     return doubles_map
 
-def get_doubles_combinations(doubles_map):
+def get_doubles_combinations():
     players = db.get_pool_players()
     players.remove('Jacob')
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     for player in doubles_map:
         print(player + " - " + str(doubles_map[player]))
         
-    combo_map = get_doubles_combinations(doubles_map)
+    combo_map = get_doubles_combinations()
 
     print("\nMissing double pairs: ")
     missing_pairs_map = get_missing_double_pairs(doubles_map, combo_map)

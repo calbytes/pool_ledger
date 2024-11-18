@@ -6,6 +6,9 @@ def calculate_stats():
     db.reset_player_stats()
 
     players = db.get_pool_players()
+    players.remove("forfeit")
+    print(players)
+    
     for player in players:
         data = (player,)
         games = db.get_games_by_player(data)

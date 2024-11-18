@@ -94,6 +94,7 @@ def double_game_entry(game_id, round):
     while input_parts == "":
         game_input = input(f"Enter Game {game_id} Doubles result: ")
         input_parts = game_input.split(" ")
+
         if len(input_parts)==3 and (input_parts[2].lower()=='w' or input_parts[2].lower()=='l'):
             player1 = input_parts[0].title()
             player2 = input_parts[1].title()
@@ -105,6 +106,13 @@ def double_game_entry(game_id, round):
 
             double1 = (game_id, "double", player1, is_win)
             double2 = (game_id, "double", player2, is_win)
+            round.append(double1)
+            round.append(double2)
+        elif len(input_parts)==1 and (input_parts[0]=='F' or input_parts[0]=='f'):
+            player = "forfeit"
+            is_win = bool(False)
+            double1 = (game_id, "double", player, is_win)
+            double2 = (game_id, "double", player, is_win)
             round.append(double1)
             round.append(double2)
         else:
@@ -125,6 +133,11 @@ def single_game_entry(game_id, round):
             else:
                 is_win = bool(False)
             
+            game = (game_id, "single", player, is_win)
+            round.append(game)
+        elif len(input_parts)==1 and (input_parts[0]=="F" or input_parts[0]=="f"):
+            player = "forfeit"
+            is_win = bool(False)
             game = (game_id, "single", player, is_win)
             round.append(game)
         else:
