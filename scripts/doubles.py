@@ -32,7 +32,8 @@ def build_doubles_map():
 
 def get_doubles_combinations():
     players = db.get_pool_players()
-    players.remove('Jacob')
+    players.remove("Jacob")
+    players.remove("forfeit")
 
     double_combinations = {}
     for player in players:
