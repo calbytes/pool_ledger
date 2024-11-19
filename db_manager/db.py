@@ -63,3 +63,8 @@ def get_double_players(data):
     rows = execute(psql.SELECT_DOUBLES_BY_MATCH_ID, Fetch.ALL, data)
     pairs = [row[0] for row in rows]
     return pairs
+
+def get_games_by_player_and_match_id(data):
+    rows = execute(psql.GET_GAMES_BY_PLAYER_AND_MATCH_ID, Fetch.ALL, data)
+    games = [row[0] for row in rows]
+    return games

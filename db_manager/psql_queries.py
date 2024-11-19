@@ -64,3 +64,10 @@ class PSQL_QUERIES:
         AND game_id = %s
         AND game_type = 'double';
     '''
+
+    GET_GAMES_BY_PLAYER_AND_MATCH_ID = '''
+        SELECT game_type
+        FROM pool_games
+        WHERE player = %s
+        and match_id = %s
+    '''
