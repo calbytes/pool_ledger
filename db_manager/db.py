@@ -42,8 +42,7 @@ def reset_player_stats():
 
 def get_games_by_player(data):
     rows = execute(psql.SELECT_GAMES_BY_PLAYER, Fetch.ALL, data)
-    games = [row[0] for row in rows]
-    return games
+    return rows
 
 def save_player_stats(data):
     execute(psql.INSERT_PLAYER_STATS, Fetch.EXC, data)

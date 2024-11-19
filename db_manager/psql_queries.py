@@ -26,16 +26,16 @@ class PSQL_QUERIES:
     '''
 
     SELECT_GAMES_BY_PLAYER = '''
-        SELECT is_win
+        SELECT game_type, is_win
         FROM pool_games
         WHERE player = %s;
     '''
 
     INSERT_PLAYER_STATS = '''
         INSERT INTO pool_player_stats
-        (player, total_games, total_wins, win_percentage)
+        (player, total_games, total_wins, win_percentage, single_win_percentage, double_win_percentage)
         VALUES
-        (%s, %s, %s, %s);
+        (%s, %s, %s, %s, %s, %s);
     '''
 
     INSERT_FILE = '''
