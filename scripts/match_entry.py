@@ -161,5 +161,6 @@ def enter_score_sheet():
 if __name__ == '__main__':
     print("STARTING match_entry")
     enter_score_sheet()
-    print("FINISHED match_entry")
+    print("FINISHED match_entry\n")
+    
     calculate_stats()
